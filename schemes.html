@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Government Schemes – GramFin</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💰%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <div class="page-head">
+    <div class="container">
+      <h1>🏛️ Government Scheme Finder</h1>
+      <p>Tell us about your business and we will show schemes that may suit you.</p>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="container">
+      <div class="card">
+        <div class="form-row">
+          <div>
+            <label for="f-type">Business type</label>
+            <select id="f-type">
+              <option value="all">Any business</option>
+              <option value="shop">Small shop / retail</option>
+              <option value="service">Service (salon, repair, transport…)</option>
+              <option value="manufacturing">Small manufacturing / food processing</option>
+              <option value="artisan">Artisan / craftsperson</option>
+              <option value="farm">Farming / dairy / fishery</option>
+              <option value="vendor">Street vendor</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-state">State</label>
+            <select id="f-state">
+              <option value="all">All India</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Other">Other state</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-group">Special category</label>
+            <select id="f-group">
+              <option value="all">None / General</option>
+              <option value="women">Woman entrepreneur</option>
+              <option value="sc-st">SC / ST entrepreneur</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-actions" style="margin-top:16px">
+          <button class="btn" id="btn-search">Show schemes</button>
+          <button class="btn ghost" id="btn-saved">⭐ My saved schemes</button>
+        </div>
+      </div>
+
+      <p id="count" style="margin:22px 0 12px;font-weight:700;color:var(--navy)"></p>
+      <div class="grid" id="results"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/layout.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/schemes.js"></script>
+</body>
+</html>
