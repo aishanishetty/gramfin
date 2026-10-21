@@ -17,7 +17,7 @@ const UI = {
 
     // navbar + footer
     "nav.home": "Home", "nav.learn": "Learn", "nav.schemes": "Schemes",
-    "nav.calc": "EMI Calculator", "nav.loans": "Compare Loans", "nav.fraud": "Fraud Alerts",
+    "nav.calc": "EMI Calculator", "nav.loans": "Compare Loans", "nav.fraud": "Fraud Alerts", "nav.login": "Login",
     "footer.line1": "GramFin — financial awareness for rural entrepreneurs.",
     "footer.disc": "⚠️ GramFin is for awareness and guidance only. It is not a bank, lender, insurer or financial advisor, and it does not guarantee loan approval, insurance or returns. Scheme details can change — always confirm on the official website or at your bank branch.",
 
@@ -52,7 +52,7 @@ const UI = {
 
     // schemes
     "schemes.h1": "🏛️ Government Scheme Finder", "schemes.sub": "Tell us about your business and we will show schemes that may suit you.",
-    "f.type": "Business type", "f.state": "State", "f.group": "Special category",
+    "f.type": "Business type", "f.state": "State", "f.group": "Special category", "f.keyword": "Search by keyword",
     "type.all": "Any business", "type.shop": "Small shop / retail",
     "type.service": "Service (salon, repair, transport…)", "type.manufacturing": "Small manufacturing / food processing",
     "type.artisan": "Artisan / craftsperson", "type.farm": "Farming / dairy / fishery", "type.vendor": "Street vendor",
@@ -98,7 +98,7 @@ const UI = {
     "lang.name": "हिंदी",
 
     "nav.home": "होम", "nav.learn": "सीखें", "nav.schemes": "योजनाएँ",
-    "nav.calc": "EMI कैलकुलेटर", "nav.loans": "लोन तुलना", "nav.fraud": "धोखाधड़ी अलर्ट",
+    "nav.calc": "EMI कैलकुलेटर", "nav.loans": "लोन तुलना", "nav.fraud": "धोखाधड़ी अलर्ट", "nav.login": "लॉगिन",
     "footer.line1": "GramFin — ग्रामीण उद्यमियों के लिए वित्तीय जागरूकता।",
     "footer.disc": "⚠️ GramFin केवल जानकारी और मार्गदर्शन के लिए है। यह बैंक, ऋणदाता, बीमा कंपनी या वित्तीय सलाहकार नहीं है, और लोन की मंज़ूरी, बीमा या मुनाफ़े की गारंटी नहीं देता। योजनाओं की जानकारी बदल सकती है — हमेशा आधिकारिक वेबसाइट या अपनी बैंक शाखा में पुष्टि करें।",
 
@@ -129,7 +129,7 @@ const UI = {
     "quiz.score": "आपका स्कोर: {s} / {n}", "quiz.perfect": "🎉 बिल्कुल सही!", "quiz.nice": "👍 अच्छा प्रयास!",
 
     "schemes.h1": "🏛️ सरकारी योजना खोजक", "schemes.sub": "अपने व्यवसाय के बारे में बताएँ और हम आपके लिए उपयुक्त योजनाएँ दिखाएँगे।",
-    "f.type": "व्यवसाय का प्रकार", "f.state": "राज्य", "f.group": "विशेष श्रेणी",
+    "f.type": "व्यवसाय का प्रकार", "f.state": "राज्य", "f.group": "विशेष श्रेणी", "f.keyword": "कीवर्ड से खोजें",
     "type.all": "कोई भी व्यवसाय", "type.shop": "छोटी दुकान / खुदरा",
     "type.service": "सेवा (सैलून, मरम्मत, परिवहन…)", "type.manufacturing": "छोटा निर्माण / खाद्य प्रसंस्करण",
     "type.artisan": "कारीगर / शिल्पकार", "type.farm": "खेती / डेयरी / मत्स्य पालन", "type.vendor": "रेहड़ी-पटरी विक्रेता",
@@ -172,7 +172,7 @@ const UI = {
     "lang.name": "मराठी",
 
     "nav.home": "मुख्यपृष्ठ", "nav.learn": "शिका", "nav.schemes": "योजना",
-    "nav.calc": "EMI कॅल्क्युलेटर", "nav.loans": "कर्ज तुलना", "nav.fraud": "फसवणूक सूचना",
+    "nav.calc": "EMI कॅल्क्युलेटर", "nav.loans": "कर्ज तुलना", "nav.fraud": "फसवणूक सूचना", "nav.login": "लॉगिन",
     "footer.line1": "GramFin — ग्रामीण उद्योजकांसाठी आर्थिक जागरूकता.",
     "footer.disc": "⚠️ GramFin फक्त माहिती आणि मार्गदर्शनासाठी आहे. ही बँक, कर्जदाता, विमा कंपनी किंवा आर्थिक सल्लागार नाही आणि कर्ज मंजुरी, विमा किंवा परताव्याची हमी देत नाही. योजनांचा तपशील बदलू शकतो — नेहमी अधिकृत वेबसाइटवर किंवा तुमच्या बँक शाखेत खात्री करा.",
 
@@ -203,7 +203,7 @@ const UI = {
     "quiz.score": "तुमचा स्कोअर: {s} / {n}", "quiz.perfect": "🎉 उत्कृष्ट!", "quiz.nice": "👍 छान प्रयत्न!",
 
     "schemes.h1": "🏛️ सरकारी योजना शोधक", "schemes.sub": "तुमच्या व्यवसायाबद्दल सांगा आणि आम्ही तुम्हाला योग्य ठरू शकतील अशा योजना दाखवू.",
-    "f.type": "व्यवसायाचा प्रकार", "f.state": "राज्य", "f.group": "विशेष प्रवर्ग",
+    "f.type": "व्यवसायाचा प्रकार", "f.state": "राज्य", "f.group": "विशेष प्रवर्ग", "f.keyword": "कीवर्डने शोधा",
     "type.all": "कोणताही व्यवसाय", "type.shop": "लहान दुकान / किरकोळ",
     "type.service": "सेवा (सलून, दुरुस्ती, वाहतूक…)", "type.manufacturing": "लहान उत्पादन / अन्न प्रक्रिया",
     "type.artisan": "कारागीर / शिल्पकार", "type.farm": "शेती / दुग्धव्यवसाय / मत्स्यपालन", "type.vendor": "रस्त्यावरील विक्रेता",

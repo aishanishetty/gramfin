@@ -23,6 +23,12 @@
   <main class="section">
     <div class="container">
       <div class="card">
+        <!-- Keyword search (new) -->
+        <div style="margin-bottom:16px">
+          <label for="f-keyword" data-i18n="f.keyword">Search by keyword</label>
+          <input type="text" id="f-keyword" placeholder="e.g. artisan, women, Maharashtra…" autocomplete="off">
+        </div>
+
         <div class="form-row">
           <div>
             <label for="f-type" data-i18n="f.type">Business type</label>
@@ -53,10 +59,20 @@
             </select>
           </div>
         </div>
+
         <div class="card-actions" style="margin-top:16px">
           <button class="btn" id="btn-search" data-i18n="btn.show">Show schemes</button>
           <button class="btn ghost" id="btn-saved" data-i18n="btn.saved">⭐ My saved schemes</button>
         </div>
+      </div>
+
+      <!-- Loading / status area -->
+      <div id="schemes-status" style="margin:18px 0 0" hidden>
+        <div class="db-spinner" id="schemes-spinner" hidden>
+          <div class="spinner"></div>
+          <span>Loading schemes from database…</span>
+        </div>
+        <div class="db-source-badge" id="schemes-source" hidden></div>
       </div>
 
       <p id="count" style="margin:22px 0 12px;font-weight:700;color:var(--navy)"></p>
@@ -65,12 +81,19 @@
   </main>
 
   <footer class="site-footer" id="site-footer"></footer>
+
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/ui-strings.js"></script>
   <script src="js/content-translations.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
   <script src="js/layout.js"></script>
   <script src="js/voice.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/db-schemes.js"></script>
   <script src="js/schemes.js"></script>
 </body>
 </html>

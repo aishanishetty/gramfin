@@ -1,0 +1,15 @@
+{
+  "name": "gramfin",
+  "version": "1.0.0",
+  "description": "GramFin – Digital financial assistance for rural entrepreneurs",
+  "scripts": {
+    "build": "node scripts/generate-config.js",
+    "dev": "node scripts/generate-config.js && echo 'Open index.html in a browser or use Live Server'"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "dotenv": "^16.6.1"
+  }
+}

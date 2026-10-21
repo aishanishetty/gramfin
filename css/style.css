@@ -219,3 +219,144 @@ details[open] summary::after { content: "－"; }
   .hero { padding: 44px 0 52px; }
   .btn.secondary { margin: 10px 0 0; }
 }
+
+/* ============================================================
+   NEW STYLES — Supabase upgrade
+   ============================================================ */
+
+/* ---------- Spinner ---------- */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 22px; height: 22px;
+  border: 3px solid var(--border);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  flex-shrink: 0;
+}
+.db-spinner {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--muted); font-size: .95rem; padding: 8px 0;
+}
+
+/* ---------- DB source badge ---------- */
+.db-source-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .82rem; font-weight: 600; padding: 4px 12px;
+  border-radius: 99px; margin: 6px 0;
+}
+.db-source-live  { background: var(--green-soft); color: var(--green-dark); }
+.db-source-local { background: var(--warn-soft);  color: var(--warn); }
+
+/* ---------- Auth page ---------- */
+.auth-tabs {
+  display: flex; border-bottom: 2px solid var(--border); margin-bottom: 0;
+}
+.auth-tab {
+  flex: 1; padding: 13px 0; font-size: 1rem; font-weight: 700;
+  font-family: inherit; background: none; border: none; cursor: pointer;
+  color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: color .15s, border-color .15s;
+}
+.auth-tab.active { color: var(--navy); border-bottom-color: var(--green); }
+.auth-tab:hover:not(.active) { color: var(--navy); }
+.auth-panel { border-top-left-radius: 0; border-top-right-radius: 0; margin-top: 0; }
+.auth-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+.auth-field label { font-weight: 700; color: var(--navy); font-size: .95rem; }
+.auth-field input {
+  width: 100%; padding: 12px 14px; font-size: 1rem; font-family: inherit;
+  border: 1.5px solid var(--border); border-radius: 10px; background: #fff;
+  color: var(--text); transition: border-color .15s;
+}
+.auth-field input:focus { outline: 3px solid rgba(27,158,119,.3); border-color: var(--green); }
+.field-error { font-size: .83rem; color: var(--danger); min-height: 1em; }
+.auth-error {
+  background: var(--danger-soft); border-left: 4px solid var(--danger);
+  color: #7f1d1d; padding: 10px 14px; border-radius: 8px;
+  font-size: .9rem; margin-bottom: 12px;
+}
+.auth-success {
+  background: var(--green-soft); border-left: 4px solid var(--green);
+  color: var(--green-dark); padding: 10px 14px; border-radius: 8px;
+  font-size: .9rem; margin-bottom: 12px; font-weight: 600;
+}
+.auth-switch { margin-top: 18px; font-size: .92rem; color: var(--muted); text-align: center; }
+.link-btn {
+  background: none; border: none; color: var(--green-dark); font-weight: 700;
+  cursor: pointer; font-size: inherit; font-family: inherit; padding: 0;
+  text-decoration: underline;
+}
+.link-btn:hover { color: var(--green); }
+.btn-spinner {
+  display: inline-block; width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+  border-radius: 50%; animation: spin .6s linear infinite;
+  vertical-align: middle; margin-left: 6px;
+}
+
+/* ---------- Navbar auth controls ---------- */
+.nav-user-label {
+  color: #d5e6f0; font-size: .88rem; font-weight: 600;
+  padding: 4px 8px; white-space: nowrap;
+}
+.nav-logout-btn {
+  background: rgba(255,255,255,.12) !important; color: #d5e6f0 !important;
+  border: 1px solid rgba(255,255,255,.3) !important;
+  padding: 6px 12px !important; font-size: .85rem !important;
+}
+.nav-logout-btn:hover { background: rgba(255,255,255,.22) !important; color: #fff !important; }
+
+/* ---------- Quiz score save badge ---------- */
+.score-save-badge {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--green-soft); border: 1px solid #a7d9c4;
+  border-radius: var(--radius); padding: 14px 18px; margin-top: 14px;
+}
+.score-save-icon { font-size: 1.6rem; line-height: 1; }
+.score-save-badge strong { color: var(--green-dark); display: block; margin-bottom: 3px; }
+.score-save-badge span   { color: var(--text); font-size: .95rem; }
+.score-history-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 14px; background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; margin-bottom: 6px; font-size: .92rem;
+}
+.score-history-date { color: var(--muted); }
+.score-history-val  { font-weight: 700; }
+
+/* ---------- Loan Eligibility Pre-check ---------- */
+.eligibility-results { margin-top: 24px; }
+.eligibility-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+.elig-scheme-name { color: var(--navy); font-size: 1.1rem; margin: 0; }
+.elig-badge {
+  display: inline-block; font-size: .8rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 99px; white-space: nowrap;
+}
+.badge-green { background: var(--green-soft); color: var(--green-dark); }
+.badge-amber { background: var(--warn-soft); color: #7a4e10; }
+.badge-info  { background: #e0eef7; color: var(--navy); }
+.elig-amount { font-size: .92rem; color: var(--muted); margin: 8px 0 6px; }
+.elig-amount strong { color: var(--navy); }
+.elig-reason { font-size: .95rem; color: var(--text); margin-bottom: 8px; }
+.elig-tip {
+  background: var(--warn-soft); border-radius: 8px;
+  padding: 10px 14px; font-size: .9rem; color: #5b3a07;
+}
+.radio-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  cursor: pointer; font-weight: 600; font-size: .95rem; color: var(--text);
+}
+.radio-label input[type="radio"] { accent-color: var(--green); width: 16px; height: 16px; }
+input[type="text"] {
+  width: 100%; padding: 12px 14px; font-size: 1rem; font-family: inherit;
+  border: 1.5px solid var(--border); border-radius: 10px; background: #fff; color: var(--text);
+}
+input[type="text"]:focus { outline: 3px solid rgba(27,158,119,.3); border-color: var(--green); }
+
+@media (max-width: 760px) {
+  .nav-user-label { display: none !important; }
+  .auth-tab { font-size: .92rem; padding: 10px 0; }
+}

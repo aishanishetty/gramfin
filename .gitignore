@@ -1,0 +1,23 @@
+# ============================================================
+# GramFin — .gitignore
+# ============================================================
+
+# Local environment variables (never commit these)
+.env
+.env.local
+.env.*.local
+
+# Generated Supabase config (produced by scripts/generate-config.js)
+# Contains your public anon key — regenerated at Vercel deploy time.
+js/config.js
+
+# Node modules (if any dev tools are installed)
+node_modules/
+
+# OS / editor artefacts
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# Vercel local cache
+.vercel/
