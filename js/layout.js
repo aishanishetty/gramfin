@@ -74,6 +74,17 @@ updateLangButtons();
 if (window.GramfinAuth) {
   window.GramfinAuth.init().then(() => {
     _updateNavbarAuth();
+
+    // If user clicked an email confirmation or password reset link that landed on home
+    const rawHash = window.location.hash ? window.location.hash.substring(1) : '';
+    const hashParams = new URLSearchParams(rawHash);
+    const searchParams = new URLSearchParams(window.location.search);
+    const authType = hashParams.get('type') || searchParams.get('type');
+    const hasError = hashParams.get('error') || hashParams.get('error_description') || searchParams.get('error_description');
+
+    if ((authType === 'signup' || authType === 'email_change' || hasError) && !window.GramfinAuth.isLoggedIn() && !window.location.pathname.includes('login')) {
+      window.location.href = 'login.html' + (window.location.search || '') + (window.location.hash || '');
+    }
   });
   window.addEventListener('gramfin-auth-change', _updateNavbarAuth);
 } else {

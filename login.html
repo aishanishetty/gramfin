@@ -275,11 +275,54 @@
       }
     });
 
-    // If already logged in, redirect away
+    // ---- Handle email confirmation redirect & existing session ----
     (async () => {
+      // Parse hash (e.g. #access_token=...&type=signup or #error_description=...)
+      const rawHash = window.location.hash ? window.location.hash.substring(1) : '';
+      const hashParams = new URLSearchParams(rawHash);
+      const searchParams = new URLSearchParams(window.location.search);
+
+      const errorDesc = hashParams.get('error_description') || searchParams.get('error_description');
+      const authType  = hashParams.get('type') || searchParams.get('type');
+      const hasToken  = !!hashParams.get('access_token');
+      const hasCode   = !!searchParams.get('code');
+
+      // Initialize auth (handles token restoration and PKCE code exchange)
       await window.GramfinAuth.init();
+
+      // Case 1: Supabase reported an error in the redirect
+      if (errorDesc) {
+        showTab('signin');
+        showError('si', '⚠️ ' + decodeURIComponent(errorDesc.replace(/\+/g, ' ')));
+        if (window.history?.replaceState) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        return;
+      }
+
+      // Case 2: User is logged in (session restored or token successfully exchanged)
       if (window.GramfinAuth.isLoggedIn()) {
-        location.href = 'index.html';
+        showTab('signin');
+        if (authType === 'signup' || authType === 'email_change' || hasToken || hasCode) {
+          showSuccess('si', '🎉 Email confirmed! You are now signed in. Redirecting…');
+        } else {
+          showSuccess('si', 'You are already signed in. Redirecting…');
+        }
+        if (window.history?.replaceState) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        setTimeout(() => { location.href = 'index.html'; }, 1500);
+        return;
+      }
+
+      // Case 3: Email confirmed by Supabase, but no active session returned
+      // (Common when confirmation link is opened in a different browser/app or standard verification mode)
+      if (authType === 'signup' || authType === 'email_change') {
+        showTab('signin');
+        showSuccess('si', '✅ Email confirmed successfully! Please sign in with your password below.');
+        if (window.history?.replaceState) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
       }
     })();
   })();

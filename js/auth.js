@@ -13,6 +13,7 @@
 
   // ---------- Internal state ----------
   let _session = null;
+  let _initPromise = null;
 
   // ---------- Public API ----------
   const GramfinAuth = {
@@ -24,22 +25,52 @@
      */
     async init() {
       if (!db()) return null;
-      try {
-        const { data } = await db().auth.getSession();
-        _session = data.session;
-        // Listen for auth state changes (login / logout / token refresh)
-        db().auth.onAuthStateChange((event, session) => {
-          _session = session;
+      if (_initPromise) return _initPromise;
+
+      _initPromise = (async () => {
+        try {
+          // If a PKCE 'code' query param is in the URL, exchange it for a session
+          if (typeof window !== 'undefined' && window.location.search) {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code');
+            if (code && typeof db().auth.exchangeCodeForSession === 'function') {
+              try {
+                const { data } = await db().auth.exchangeCodeForSession(code);
+                if (data?.session) {
+                  _session = data.session;
+                }
+              } catch (exchangeErr) {
+                console.warn('[Auth] Code exchange note:', exchangeErr.message);
+              }
+            }
+          }
+
+          const { data } = await db().auth.getSession();
+          _session = data?.session || _session;
+
+          // Listen for auth state changes (login / logout / token refresh)
+          db().auth.onAuthStateChange((event, session) => {
+            _session = session;
+            GramfinAuth._updateNavbar();
+            if (session?.user) {
+              db().from('user_profiles').upsert({
+                id: session.user.id,
+                display_name: session.user.user_metadata?.display_name || session.user.email?.split('@')[0]
+              }).then(() => {}).catch(() => {});
+            }
+            // Notify other scripts that auth state changed
+            window.dispatchEvent(new CustomEvent('gramfin-auth-change', { detail: { event, session } }));
+          });
+
           GramfinAuth._updateNavbar();
-          // Notify other scripts that auth state changed
-          window.dispatchEvent(new CustomEvent('gramfin-auth-change', { detail: { event, session } }));
-        });
-        GramfinAuth._updateNavbar();
-        return _session?.user || null;
-      } catch (err) {
-        console.error('[Auth] Failed to restore session:', err);
-        return null;
-      }
+          return _session?.user || null;
+        } catch (err) {
+          console.error('[Auth] Failed to restore session:', err);
+          return null;
+        }
+      })();
+
+      return _initPromise;
     },
 
     /**
@@ -51,20 +82,28 @@
      */
     async signUp(email, password, displayName) {
       if (!db()) throw new Error('Database not connected');
+      const origin = (typeof window !== 'undefined' && window.location.origin) ? window.location.origin : 'https://gramfin.vercel.app';
+      const redirectUrl = origin.includes('localhost')
+        ? `${origin}/login.html`
+        : 'https://gramfin.vercel.app/login';
+
       const { data, error } = await db().auth.signUp({
         email,
         password,
         options: {
+          emailRedirectTo: redirectUrl,
           data: { display_name: displayName || email.split('@')[0] }
         }
       });
       if (error) throw error;
-      // Create the user_profiles row
-      if (data.user) {
-        await db().from('user_profiles').upsert({
-          id: data.user.id,
-          display_name: displayName || email.split('@')[0]
-        });
+      // Create user_profiles row only if session exists
+      if (data.user && data.session) {
+        try {
+          await db().from('user_profiles').upsert({
+            id: data.user.id,
+            display_name: displayName || email.split('@')[0]
+          });
+        } catch (_) {}
       }
       return data;
     },
