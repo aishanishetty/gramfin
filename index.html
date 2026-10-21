@@ -4,57 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GramFin – Financial help for rural entrepreneurs</title>
-  <meta name="description" content="Learn about digital payments, loans, government schemes, insurance and investments in simple language.">
+  <meta name="description" content="Learn about digital payments, loans, government schemes, insurance and investments in simple language. Available in English, Hindi and Marathi.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💰%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-title="title.home">
   <header class="site-header" id="site-header"></header>
 
   <section class="hero">
     <div class="container">
-      <h1>Grow your business with <em>smart money</em> decisions</h1>
-      <p>Understand loans, government schemes, digital payments and insurance in simple language. Free, clear and made for rural entrepreneurs.</p>
-      <a class="btn" href="schemes.html">Find schemes for me</a>
-      <a class="btn secondary" href="calculator.html">Calculate my EMI</a>
+      <h1 data-i18n-html="home.h1">Grow your business with <em>smart money</em> decisions</h1>
+      <p data-i18n="home.sub">Understand loans, government schemes, digital payments and insurance in simple language. Free, clear and made for rural entrepreneurs.</p>
+      <a class="btn" href="schemes.html" data-i18n="home.btnSchemes">Find schemes for me</a>
+      <a class="btn secondary" href="calculator.html" data-i18n="home.btnEmi">Calculate my EMI</a>
     </div>
   </section>
 
   <main>
     <section class="section">
       <div class="container">
-        <h2>What do you want to do today?</h2>
-        <p class="lead">Pick one to get started.</p>
+        <h2 data-i18n="home.todayH">What do you want to do today?</h2>
+        <p class="lead" data-i18n="home.todaySub">Pick one to get started.</p>
         <div class="grid">
-          <a class="card" href="schemes.html"><span class="icon">🏛️</span><h3>Government Schemes</h3><p>Tell us your business type and state. We show schemes you may be eligible for.</p></a>
-          <a class="card" href="calculator.html"><span class="icon">🧮</span><h3>EMI Calculator</h3><p>Find out your monthly loan payment and total interest before you borrow.</p></a>
-          <a class="card" href="loans.html"><span class="icon">⚖️</span><h3>Compare Loans</h3><p>See different loan types side by side: interest, documents and who they suit.</p></a>
-          <a class="card" href="learn.html"><span class="icon">📚</span><h3>Learn Finance</h3><p>UPI, loans, insurance, savings and investing explained simply, with quizzes.</p></a>
-          <a class="card" href="fraud.html"><span class="icon">🛡️</span><h3>Fraud Alerts</h3><p>Know the common scams and how to keep your money and OTPs safe.</p></a>
+          <a class="card" href="schemes.html"><span class="icon">🏛️</span><h3 data-i18n="home.c1t">Government Schemes</h3><p data-i18n="home.c1d">Tell us your business type and state. We show schemes you may be eligible for.</p></a>
+          <a class="card" href="calculator.html"><span class="icon">🧮</span><h3 data-i18n="home.c2t">EMI Calculator</h3><p data-i18n="home.c2d">Find out your monthly loan payment and total interest before you borrow.</p></a>
+          <a class="card" href="loans.html"><span class="icon">⚖️</span><h3 data-i18n="home.c3t">Compare Loans</h3><p data-i18n="home.c3d">See different loan types side by side: interest, documents and who they suit.</p></a>
+          <a class="card" href="learn.html"><span class="icon">📚</span><h3 data-i18n="home.c4t">Learn Finance</h3><p data-i18n="home.c4d">UPI, loans, insurance, savings and investing explained simply, with quizzes.</p></a>
+          <a class="card" href="fraud.html"><span class="icon">🛡️</span><h3 data-i18n="home.c5t">Fraud Alerts</h3><p data-i18n="home.c5d">Know the common scams and how to keep your money and OTPs safe.</p></a>
         </div>
       </div>
     </section>
 
     <section class="section" style="background:#fff">
       <div class="container">
-        <h2>How GramFin helps</h2>
-        <p class="lead">Three simple steps.</p>
+        <h2 data-i18n="home.howH">How GramFin helps</h2>
+        <p class="lead" data-i18n="home.howSub">Three simple steps.</p>
         <div class="grid steps">
-          <div class="card"><h3>Learn</h3><p>Read short, easy lessons on money basics, no jargon.</p></div>
-          <div class="card"><h3>Compare</h3><p>Check schemes and loan options and calculate what you will pay back.</p></div>
-          <div class="card"><h3>Decide</h3><p>Take the right documents to your bank or CSC and apply with confidence.</p></div>
+          <div class="card"><h3 data-i18n="home.s1t">Learn</h3><p data-i18n="home.s1d">Read short, easy lessons on money basics, no jargon.</p></div>
+          <div class="card"><h3 data-i18n="home.s2t">Compare</h3><p data-i18n="home.s2d">Check schemes and loan options and calculate what you will pay back.</p></div>
+          <div class="card"><h3 data-i18n="home.s3t">Decide</h3><p data-i18n="home.s3d">Take the right documents to your bank or CSC and apply with confidence.</p></div>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="notice"><strong>Please note:</strong> GramFin gives information for awareness only. We are not a bank or lender and we do not take any money or personal details. Always confirm details with the official source.</div>
+        <div class="notice" data-i18n-html="home.notice"><strong>Please note:</strong> GramFin gives information for awareness only. We are not a bank or lender and we do not take any money or personal details. Always confirm details with the official source.</div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/ui-strings.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
+  <script src="js/voice.js"></script>
 </body>
 </html>

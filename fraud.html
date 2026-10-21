@@ -5,55 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fraud Alerts – GramFin</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💰%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-title="nav.fraud">
   <header class="site-header" id="site-header"></header>
 
   <div class="page-head">
     <div class="container">
-      <h1>🛡️ Fraud Alerts &amp; Safety Tips</h1>
-      <p>Know the common scams so you can protect your money.</p>
+      <h1 data-i18n="fraud.h1">🛡️ Fraud Alerts &amp; Safety Tips</h1>
+      <p data-i18n="fraud.sub">Know the common scams so you can protect your money.</p>
     </div>
   </div>
 
   <main class="section">
     <div class="container">
       <div class="notice alert" style="margin-bottom:24px">
-        <h3>🚨 Golden rule</h3>
-        <p style="font-size:1rem;color:var(--text)"><strong>Never share your OTP, UPI PIN, card PIN, CVV or passwords with anyone.</strong> Not even someone who says they are from your bank, from the police, or from a government office.</p>
+        <h3 data-i18n="fraud.ruleH">🚨 Golden rule</h3>
+        <p style="font-size:1rem;color:var(--text)" data-i18n-html="fraud.rule"><strong>Never share your OTP, UPI PIN, card PIN, CVV or passwords with anyone.</strong> Not even someone who says they are from your bank, from the police, or from a government office.</p>
       </div>
 
-      <h2>Common scams</h2>
-      <p class="lead">Quick to read, easy to remember.</p>
+      <h2 data-i18n="fraud.common">Common scams</h2>
+      <p class="lead" data-i18n="fraud.commonSub">Quick to read, easy to remember.</p>
       <div class="grid" id="scams"></div>
 
-      <h2 style="margin-top:44px">Stay safe checklist</h2>
+      <h2 style="margin-top:44px" data-i18n="fraud.checkH">Stay safe checklist</h2>
       <div class="card" style="margin-top:14px">
         <ul style="margin-left:20px;line-height:2">
-          <li>Download banking and UPI apps only from the Play Store / App Store.</li>
-          <li>Set a screen lock on your phone and keep your UPI PIN secret.</li>
-          <li>Check the name shown before you confirm any UPI payment.</li>
-          <li>Do not click links in unknown SMS or WhatsApp messages.</li>
-          <li>Check your bank SMS alerts regularly for transactions you did not make.</li>
-          <li>If you are cheated, call the cyber crime helpline <strong>1930</strong> immediately and report at <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>.</li>
+          <li data-i18n="fraud.l1">Download banking and UPI apps only from the Play Store / App Store.</li>
+          <li data-i18n="fraud.l2">Set a screen lock on your phone and keep your UPI PIN secret.</li>
+          <li data-i18n="fraud.l3">Check the name shown before you confirm any UPI payment.</li>
+          <li data-i18n="fraud.l4">Do not click links in unknown SMS or WhatsApp messages.</li>
+          <li data-i18n="fraud.l5">Check your bank SMS alerts regularly for transactions you did not make.</li>
+          <li data-i18n-html="fraud.l6">If you are cheated, call the cyber crime helpline <strong>1930</strong> immediately and report at <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>.</li>
         </ul>
       </div>
     </div>
   </main>
 
   <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/ui-strings.js"></script>
+  <script src="js/content-translations.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
+  <script src="js/voice.js"></script>
   <script src="js/data.js"></script>
-  <script>
-    // Build the scam cards from the `scams` array in data.js
-    document.getElementById("scams").innerHTML = scams.map(s => `
-      <div class="card">
-        <span class="icon">${s.icon}</span>
-        <h3>${s.title}</h3>
-        <p>${s.text}</p>
-        <p style="margin-top:10px;color:var(--green-dark)"><strong>✔ What to do:</strong> ${s.tip}</p>
-      </div>`).join("");
-  </script>
+  <script src="js/fraud.js"></script>
 </body>
 </html>

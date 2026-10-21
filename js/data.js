@@ -18,7 +18,7 @@ const schemes = [
     states: ["all"], groups: ["all"],
     summary: "Collateral-free loans for small non-farm businesses, given through banks, NBFCs and microfinance institutions.",
     eligibility: "Any Indian citizen with a business plan for a non-farm income-generating activity (manufacturing, trading, services).",
-    benefits: "Shishu: up to ₹50,000 · Kishore: ₹50,000 to ₹5 lakh · Tarun: ₹5 to ₹10 lakh · Tarun Plus: up to ₹20 lakh. No collateral.",
+    benefits: "Shishu: up to ₹50,000 · Kishore: ₹50,000 to ₹5 lakh · Tarun: ₹5 lakh to ₹10 lakh · Tarun Plus: up to ₹20 lakh. No collateral.",
     documents: "ID proof, address proof, business proof or plan, passport photos, bank statement.",
     apply: "Visit any bank branch, NBFC or microfinance institution, or apply on the Udyamimitra portal.",
     link: "https://www.mudra.org.in"

@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Government Schemes – GramFin</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💰%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-title="nav.schemes">
   <header class="site-header" id="site-header"></header>
 
   <div class="page-head">
     <div class="container">
-      <h1>🏛️ Government Scheme Finder</h1>
-      <p>Tell us about your business and we will show schemes that may suit you.</p>
+      <h1 data-i18n="schemes.h1">🏛️ Government Scheme Finder</h1>
+      <p data-i18n="schemes.sub">Tell us about your business and we will show schemes that may suit you.</p>
     </div>
   </div>
 
@@ -22,37 +25,37 @@
       <div class="card">
         <div class="form-row">
           <div>
-            <label for="f-type">Business type</label>
+            <label for="f-type" data-i18n="f.type">Business type</label>
             <select id="f-type">
-              <option value="all">Any business</option>
-              <option value="shop">Small shop / retail</option>
-              <option value="service">Service (salon, repair, transport…)</option>
-              <option value="manufacturing">Small manufacturing / food processing</option>
-              <option value="artisan">Artisan / craftsperson</option>
-              <option value="farm">Farming / dairy / fishery</option>
-              <option value="vendor">Street vendor</option>
+              <option value="all" data-i18n="type.all">Any business</option>
+              <option value="shop" data-i18n="type.shop">Small shop / retail</option>
+              <option value="service" data-i18n="type.service">Service (salon, repair, transport…)</option>
+              <option value="manufacturing" data-i18n="type.manufacturing">Small manufacturing / food processing</option>
+              <option value="artisan" data-i18n="type.artisan">Artisan / craftsperson</option>
+              <option value="farm" data-i18n="type.farm">Farming / dairy / fishery</option>
+              <option value="vendor" data-i18n="type.vendor">Street vendor</option>
             </select>
           </div>
           <div>
-            <label for="f-state">State</label>
+            <label for="f-state" data-i18n="f.state">State</label>
             <select id="f-state">
-              <option value="all">All India</option>
-              <option value="Maharashtra">Maharashtra</option>
-              <option value="Other">Other state</option>
+              <option value="all" data-i18n="state.all">All India</option>
+              <option value="Maharashtra" data-i18n="state.mh">Maharashtra</option>
+              <option value="Other" data-i18n="state.other">Other state</option>
             </select>
           </div>
           <div>
-            <label for="f-group">Special category</label>
+            <label for="f-group" data-i18n="f.group">Special category</label>
             <select id="f-group">
-              <option value="all">None / General</option>
-              <option value="women">Woman entrepreneur</option>
-              <option value="sc-st">SC / ST entrepreneur</option>
+              <option value="all" data-i18n="group.all">None / General</option>
+              <option value="women" data-i18n="group.women">Woman entrepreneur</option>
+              <option value="sc-st" data-i18n="group.scst">SC / ST entrepreneur</option>
             </select>
           </div>
         </div>
         <div class="card-actions" style="margin-top:16px">
-          <button class="btn" id="btn-search">Show schemes</button>
-          <button class="btn ghost" id="btn-saved">⭐ My saved schemes</button>
+          <button class="btn" id="btn-search" data-i18n="btn.show">Show schemes</button>
+          <button class="btn ghost" id="btn-saved" data-i18n="btn.saved">⭐ My saved schemes</button>
         </div>
       </div>
 
@@ -62,7 +65,11 @@
   </main>
 
   <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/ui-strings.js"></script>
+  <script src="js/content-translations.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
+  <script src="js/voice.js"></script>
   <script src="js/data.js"></script>
   <script src="js/schemes.js"></script>
 </body>

@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Compare Loans – GramFin</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💰%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-title="nav.loans">
   <header class="site-header" id="site-header"></header>
 
   <div class="page-head">
     <div class="container">
-      <h1>⚖️ Compare Loan Options</h1>
-      <p>Pick up to three loan types and see them side by side.</p>
+      <h1 data-i18n="loans.h1">⚖️ Compare Loan Options</h1>
+      <p data-i18n="loans.sub">Pick up to three loan types and see them side by side.</p>
     </div>
   </div>
 
@@ -21,15 +24,15 @@
     <div class="container">
       <div class="card">
         <div class="form-row">
-          <div><label for="c1">Option A</label><select id="c1"></select></div>
-          <div><label for="c2">Option B</label><select id="c2"></select></div>
-          <div><label for="c3">Option C (optional)</label><select id="c3"></select></div>
+          <div><label for="c1" data-i18n="loans.optA">Option A</label><select id="c1"></select></div>
+          <div><label for="c2" data-i18n="loans.optB">Option B</label><select id="c2"></select></div>
+          <div><label for="c3" data-i18n="loans.optC">Option C (optional)</label><select id="c3"></select></div>
         </div>
       </div>
 
       <div class="table-wrap" style="margin-top:22px"><table id="compare-table"></table></div>
 
-      <div class="notice" style="margin-top:22px">
+      <div class="notice" style="margin-top:22px" data-i18n-html="loans.notice">
         ⚠️ Rates and fees shown are <strong>indicative ranges for learning</strong>, not offers. Your actual rate depends on your bank, your profile and the date.
         Always ask for the total cost (interest + fees) and use our <a href="calculator.html">EMI Calculator</a> before you decide.
       </div>
@@ -37,7 +40,11 @@
   </main>
 
   <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/ui-strings.js"></script>
+  <script src="js/content-translations.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
+  <script src="js/voice.js"></script>
   <script src="js/data.js"></script>
   <script src="js/loans.js"></script>
 </body>

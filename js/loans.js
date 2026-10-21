@@ -1,4 +1,5 @@
 // loans.js — compare loans from the `loans` array (data.js) in a table.
+// Text comes from t() / localized() so it follows the chosen language.
 
 const selects = [
   document.getElementById("c1"),
@@ -7,43 +8,52 @@ const selects = [
 ];
 const table = document.getElementById("compare-table");
 
-// Fill each dropdown with the loan names.
-// Option C also gets a "— none —" choice so it can be left empty.
-selects.forEach((sel, i) => {
-  const blank = i === 2 ? `<option value="">— none —</option>` : "";
-  sel.innerHTML = blank + loans.map(l => `<option value="${l.id}">${l.name}</option>`).join("");
-});
-
-// Start with 3 different sensible defaults.
-selects[0].value = "mudra";
-selects[1].value = "msme";
-selects[2].value = "nbfc";
-
-// The rows of the table: [label, which field of the loan object to show]
+// The rows of the table: [label key, which field of the loan object to show]
 const rows = [
-  ["Provider",        "provider"],
-  ["Loan amount",     "amount"],
-  ["Interest rate",   "rate"],
-  ["Processing fee",  "fee"],
-  ["Repayment period","tenure"],
-  ["Collateral",      "collateral"],
-  ["Documents",       "documents"],
-  ["Best suited for", "bestFor"],
+  ["row.provider",   "provider"],
+  ["row.amount",     "amount"],
+  ["row.rate",       "rate"],
+  ["row.fee",        "fee"],
+  ["row.tenure",     "tenure"],
+  ["row.collateral", "collateral"],
+  ["row.documents",  "documents"],
+  ["row.bestFor",    "bestFor"],
 ];
 
+// Fill each dropdown with the loan names (in the current language).
+// We remember what was selected so a language change doesn't reset the choices.
+function fillSelects() {
+  selects.forEach((sel, i) => {
+    const previous = sel.value;
+    const blank = i === 2 ? `<option value="">${t("loans.none")}</option>` : "";
+    sel.innerHTML = blank + loans
+      .map(l => `<option value="${l.id}">${localized("loans", l.id, l).name}</option>`)
+      .join("");
+    if (previous) sel.value = previous;
+  });
+}
+
 function render() {
-  // Find the chosen loan objects (ignore an empty Option C).
+  // Find the chosen loan objects (ignore an empty Option C), in the current language.
   const chosen = selects
     .map(s => loans.find(l => l.id === s.value))
-    .filter(Boolean);
+    .filter(Boolean)
+    .map(l => localized("loans", l.id, l));
 
-  const head = `<tr><th>Feature</th>${chosen.map(l => `<th>${l.name}</th>`).join("")}</tr>`;
+  const head = `<tr><th>${t("loans.feature")}</th>${chosen.map(l => `<th>${l.name}</th>`).join("")}</tr>`;
   const body = rows
-    .map(([label, key]) => `<tr><td>${label}</td>${chosen.map(l => `<td>${l[key]}</td>`).join("")}</tr>`)
+    .map(([labelKey, field]) => `<tr><td>${t(labelKey)}</td>${chosen.map(l => `<td>${l[field]}</td>`).join("")}</tr>`)
     .join("");
 
   table.innerHTML = head + body;
 }
 
-selects.forEach(s => s.addEventListener("change", render));
+fillSelects();
+// Start with 3 different sensible defaults.
+selects[0].value = "mudra";
+selects[1].value = "msme";
+selects[2].value = "nbfc";
 render();
+
+selects.forEach(s => s.addEventListener("change", render));
+window.addEventListener("langchange", () => { fillSelects(); render(); });

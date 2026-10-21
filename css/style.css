@@ -23,7 +23,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", "Nirmala UI", Roboto, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -45,7 +45,7 @@ img { max-width: 100%; }
 .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
 .brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 1.4rem; letter-spacing: 0.3px; }
 .brand span { color: #6ee7b7; }
-.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links { display: flex; gap: 4px; list-style: none; margin-left: auto; margin-right: 14px; }
 .nav-links a {
   color: #d5e6f0; text-decoration: none; padding: 8px 12px;
   border-radius: 8px; font-weight: 600; font-size: 0.95rem;
@@ -55,6 +55,35 @@ img { max-width: 100%; }
   display: none; background: none; border: 1px solid rgba(255,255,255,.4);
   color: #fff; font-size: 1.4rem; padding: 2px 10px; border-radius: 8px; cursor: pointer;
 }
+
+/* ---------- Language switcher (English | हिंदी | मराठी) ---------- */
+.lang-switch { display: flex; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 10px; overflow: hidden; }
+.lang-switch button {
+  background: none; border: 0; color: #d5e6f0; cursor: pointer; font-family: inherit;
+  font-size: 0.88rem; font-weight: 600; padding: 7px 11px;
+}
+.lang-switch button + button { border-left: 1px solid rgba(255, 255, 255, 0.25); }
+.lang-switch button:hover { background: rgba(255, 255, 255, 0.14); }
+.lang-switch button.active { background: var(--green); color: #fff; }
+
+/* ---------- Voice (Listen) ---------- */
+.voice-fab {
+  position: fixed; right: 16px; bottom: 18px; z-index: 60;
+  background: var(--green); color: #fff; border: 0; border-radius: 99px;
+  padding: 13px 20px; font-size: 1rem; font-weight: 700; font-family: inherit;
+  cursor: pointer; box-shadow: 0 4px 16px rgba(7, 42, 66, 0.35);
+}
+.voice-fab:hover { background: var(--green-dark); }
+.voice-fab.playing, .btn.playing { background: var(--danger); color: #fff; }
+.voice-toast {
+  position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 70;
+  width: min(480px, calc(100% - 32px)); background: var(--text); color: #fff;
+  padding: 14px 18px; border-radius: 12px; font-size: 0.95rem; box-shadow: var(--shadow);
+}
+.voice-toast[hidden] { display: none; }
+
+/* Hindi / Marathi text needs a little more line spacing to stay readable */
+:lang(hi) body, :lang(mr) body, html[lang="hi"] body, html[lang="mr"] body { line-height: 1.8; }
 
 /* ---------- Hero ---------- */
 .hero { background: linear-gradient(135deg, var(--navy) 0%, #14597f 100%); color: #fff; padding: 64px 0 72px; }
@@ -177,9 +206,12 @@ details[open] summary::after { content: "－"; }
 
 /* ---------- Mobile ---------- */
 @media (max-width: 760px) {
-  .menu-btn { display: block; }
+  .menu-btn { display: block; margin-left: 8px; }
+  .lang-switch { margin-left: auto; }
+  .lang-switch button { padding: 6px 9px; font-size: 0.82rem; }
+  .brand { font-size: 1.25rem; }
   .nav-links {
-    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0;
     background: var(--navy); flex-direction: column; padding: 8px 16px 16px;
   }
   .nav-links.open { display: flex; }

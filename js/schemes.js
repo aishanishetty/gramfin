@@ -1,6 +1,7 @@
 // schemes.js — filter the `schemes` array (from data.js) and show cards.
 // Also lets the user ⭐ save schemes. Saved IDs are kept in localStorage,
 // which is a tiny storage inside the user's own browser (no backend needed).
+// Text comes from t() / localized() so everything follows the chosen language.
 
 const typeBox  = document.getElementById("f-type");
 const stateBox = document.getElementById("f-state");
@@ -9,8 +10,6 @@ const results  = document.getElementById("results");
 const countEl  = document.getElementById("count");
 
 // ---------- Saved schemes (localStorage) ----------
-// localStorage only stores text, so we turn the array into text with JSON.stringify
-// and back into an array with JSON.parse.
 function getSaved() {
   try { return JSON.parse(localStorage.getItem("savedSchemes")) || []; }
   catch { return []; }
@@ -18,52 +17,55 @@ function getSaved() {
 function toggleSaved(id) {
   let saved = getSaved();
   saved = saved.includes(id) ? saved.filter(x => x !== id) : [...saved, id];
-  localStorage.setItem("savedSchemes", JSON.stringify(saved));
+  try { localStorage.setItem("savedSchemes", JSON.stringify(saved)); } catch (e) { /* ignore */ }
 }
 
 // ---------- Filtering ----------
-// A scheme matches if it fits every box the user chose.
+// Filtering always uses the English data (ids/keys), so it works in any language.
 function matches(s) {
   const type  = typeBox.value;
   const state = stateBox.value;
   const group = groupBox.value;
 
   const typeOK  = type === "all" || s.businessTypes.includes(type);
-  // All-India schemes are always OK. State schemes only if that state is chosen.
   const stateOK = s.states.includes("all") || s.states.includes(state);
-  // Schemes meant for everyone ("all") always OK; special schemes only if the user picked that group.
   const groupOK = s.groups.includes("all") || s.groups.includes(group);
-
   return typeOK && stateOK && groupOK;
 }
 
 // ---------- Drawing the cards ----------
-function card(s) {
+function stateLabel(s) {
+  if (s.states.includes("all")) return t("state.all");
+  return s.states.map(x => (x === "Maharashtra" ? t("state.mh") : x)).join(", ");
+}
+
+function card(raw) {
+  const s = localized("schemes", raw.id, raw);        // Hindi/Marathi version if available
   const isSaved = getSaved().includes(s.id);
-  const stateTag = s.states.includes("all") ? "All India" : s.states.join(", ");
   return `
-    <article class="card scheme-card">
-      <span class="tag blue">${stateTag}</span>
+    <article class="card scheme-card" data-speak-scope>
+      <span class="tag blue">${stateLabel(raw)}</span>
       <h3>${s.name}</h3>
       <p>${s.summary}</p>
       <dl>
-        <dt>Who can apply</dt><dd>${s.eligibility}</dd>
-        <dt>Benefits</dt><dd>${s.benefits}</dd>
-        <dt>Documents needed</dt><dd>${s.documents}</dd>
-        <dt>How to apply</dt><dd>${s.apply}</dd>
+        <dt>${t("scheme.who")}</dt><dd>${s.eligibility}</dd>
+        <dt>${t("scheme.benefits")}</dt><dd>${s.benefits}</dd>
+        <dt>${t("scheme.docs")}</dt><dd>${s.documents}</dd>
+        <dt>${t("scheme.apply")}</dt><dd>${s.apply}</dd>
       </dl>
       <div class="card-actions">
-        <button class="btn small ghost" data-save="${s.id}">${isSaved ? "⭐ Saved" : "☆ Save"}</button>
-        <a class="btn small" href="${s.link}" target="_blank" rel="noopener">Official website ↗</a>
+        <button class="btn small ghost" data-speak>${t("voice.listen")}</button>
+        <button class="btn small ghost" data-save="${s.id}">${isSaved ? t("btn.savedOn") : t("btn.save")}</button>
+        <a class="btn small" href="${s.link}" target="_blank" rel="noopener">${t("btn.official")}</a>
       </div>
     </article>`;
 }
 
-function show(list, label) {
-  countEl.textContent = list.length ? `${label}: ${list.length} scheme${list.length > 1 ? "s" : ""}` : "";
+function show(list, countKey) {
+  countEl.textContent = list.length ? t(countKey, { n: list.length }) : "";
   results.innerHTML = list.length
     ? list.map(card).join("")
-    : `<div class="empty" style="grid-column:1/-1">No schemes found. Try choosing "Any business" or "All India".</div>`;
+    : `<div class="empty" style="grid-column:1/-1">${t("empty.schemes")}</div>`;
 }
 
 let mode = "search"; // "search" or "saved"
@@ -71,10 +73,11 @@ let mode = "search"; // "search" or "saved"
 function render() {
   if (mode === "saved") {
     const saved = getSaved();
-    show(schemes.filter(s => saved.includes(s.id)), "Saved");
+    show(schemes.filter(s => saved.includes(s.id)), "count.saved");
   } else {
-    show(schemes.filter(matches), "Found");
+    show(schemes.filter(matches), "count.found");
   }
+  refreshButtons();   // (from voice.js) make sure the new Listen buttons show the right label
 }
 
 // ---------- Events ----------
@@ -89,5 +92,8 @@ results.addEventListener("click", e => {
   toggleSaved(btn.dataset.save);
   render();
 });
+
+// Redraw the cards when the language changes.
+window.addEventListener("langchange", render);
 
 render(); // show everything when the page first loads
